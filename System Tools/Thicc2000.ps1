@@ -1,9 +1,10 @@
 #######################################################
 #######                 THICC2000               #######
 #######################################################
-#######      Version date: April 11th 2024      #######
+#######  Version release date: July 30th 2024   #######
 #######################################################
 
+# AD Users management menu
 function ManageADUserGroups {
     Clear-Host
     Write-Host "AD user's group management"
@@ -27,6 +28,7 @@ function ManageADUserGroups {
     }
 }
 
+# Adding AD user to AD group
 function AddUserToGroup {
     $memberToAdd = Read-Host "Please provide the user to add" 
     $destinationGroup = Read-Host "Please provide the group you want to add the user to"
@@ -42,6 +44,7 @@ function AddUserToGroup {
     }
 }
 
+# Removing AD User from AD Group
 function RemoveUserFromGroup {
     $memberToRemove = Read-Host "Please provide the user to remove"
     $currentGroup = Read-Host "Please provide the group you want to remove the user from"
@@ -57,6 +60,7 @@ function RemoveUserFromGroup {
     }
 }
 
+# Moving AD user from an AD group to another
 function MoveUserToGroup {
     $memberToMove = Read-Host "Please provide the user to move"
     $currentGroup = Read-Host "Please provide the group you want to remove the user from"
@@ -74,6 +78,7 @@ function MoveUserToGroup {
     }
 }
 
+# Listing the AD groups that an AD user is a member of
 function ListUserGroups {
     $userToQuery = Read-Host "Please provide the user you want to query"
     $validation = Read-Host "Are you sure that you want to list the group(s) that $userToQuery is a member of ? y/N"
@@ -89,6 +94,7 @@ function ListUserGroups {
     }
 }
 
+# AD groups management menu
 function ManageADGroup {
     Clear-Host
     Write-Host "AD group management"
@@ -105,6 +111,7 @@ function ManageADGroup {
     }
 }
 
+# Listing the members of an AD group
 function ListGroupMembers {
     $groupToQuery = Read-Host "Please provide the group you want to query"
     $validation = Read-Host "Are you sure that you want to list the members of the group $groupToQuery ? y/N"
@@ -120,6 +127,7 @@ function ListGroupMembers {
     }
 }
 
+# Managing GPOs menu
 function DisplayGPOs {
     Clear-Host
     Write-Host "GPOs display"
@@ -138,6 +146,7 @@ function DisplayGPOs {
     }
 }
 
+# Listing the GPOs applied to an AD user
 function DisplayUserGPOs {
     Write-Host ""
     $userToQuery = Read-Host "Please provide the user you want to query"
@@ -155,6 +164,7 @@ function DisplayUserGPOs {
     }
 }
 
+# Listing the GPOs applied to an AD computer
 function DisplayComputerGPOs {
     Write-Host ""
     $computerToQuery = Read-Host "Please provide the computer you want to query"
@@ -180,7 +190,7 @@ function QuitScript {
     Write-Host "Bye, have a great day"
     Start-Sleep 1
     Clear-Host
-    $global:continue = $false
+    Exit
 }
 
 function InvalidOption {
@@ -189,7 +199,7 @@ function InvalidOption {
     Start-Sleep 1
     Clear-Host
 }
-
+# Launch menu / Main menu
 $global:continue = $true
 while ($global:continue) {
     Write-Host ""
