@@ -203,7 +203,7 @@ function InvalidOption {
 $global:continue = $true
 while ($global:continue) {
     Write-Host ""
-    Write-Host "/!\ Please make sure to run this script with Active Directory privileges /!\" -ForegroundColor Yellow
+    Write-Host "/!\ Please make sure to run this script with privileges /!\" -ForegroundColor Yellow
     Write-Host "------------------------------------------------------------"
     Write-Host "1. AD user's groups management"
     Write-Host "2. AD group management"
