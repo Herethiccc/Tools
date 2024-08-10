@@ -181,6 +181,57 @@ function DisplayComputerGPOs {
     } 
 }
 
+function NetworkUtilities {
+    Clear-Host
+    Write-Host "Network Utilities"
+    Write-Host "------------------------------------------------------------"
+    Write-Host "1. Test-NetConnection (ex telnet)"
+    Write-Host "2. DiagnoseRouting"
+    Write-Host "R. Return to main menu"
+    Write-Host "Q. Quit"
+    Write-Host "------------------------------------------------------------"
+    $choice = Read-Host "Pick an option"
+    switch ($choice) {
+        1 { TestNetConnection }
+        2 { DiagnoseRouting }
+        'R' { ReturnToMainMenu }
+        'Q' { QuitScript }
+    }
+}
+
+function TestNetConnection {
+    Write-Host ""
+    $targetComputer = Read-Host "Target ?"
+    $targetPort = Read-Host "Port ?"
+    $validation = Read-Host "Are you sure that you would like to test connectivity with port $targetPort on $targetComputer ? y/N"
+    if ($validation -eq "y") {
+        try {
+            Write-Host ""
+            Write-Host "Testing connectivity..." -ForegroundColor Green
+            Test-NetConnection -ComputerName $targetComputer -Port $targetPort
+        }
+        catch {
+            Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+        }
+    }
+}
+
+function DiagnoseRouting {
+    Write-Host ""
+    $targetComputer = Read-Host "Target ?"
+    $validation = Read-Host "Are you sure that you would like to diagnose routing to $targetcomputer ? y/N "
+    if ($validation -eq "y") {
+        try {
+            Write-Host ""
+            Write-Host "Diagnosing routing..." -ForegroundColor Green
+            Test-NetConnection -ComputerName $targetComputer -DiagnoseRouting
+        }
+        catch {
+            Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+        }
+    }
+}
+
 function ReturnToMainMenu {
     Clear-Host
 }
@@ -208,6 +259,7 @@ while ($global:continue) {
     Write-Host "1. AD user's groups management"
     Write-Host "2. AD group management"
     Write-Host "3. GPOs display"
+    Write-Host "4. Network utilities"
     Write-Host "Q. Quit"
     Write-Host "------------------------------------------------------------"
     $choice = Read-Host "Pick an option"
@@ -215,6 +267,7 @@ while ($global:continue) {
         1 { ManageADUserGroups }
         2 { ManageADGroup }
         3 { DisplayGPOs }
+        4 { NetworkUtilities}
         'Q' { QuitScript }
         Default { InvalidOption }
     }
