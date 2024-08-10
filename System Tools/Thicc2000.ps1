@@ -181,6 +181,7 @@ function DisplayComputerGPOs {
     } 
 }
 
+# Network Utilities menu
 function NetworkUtilities {
     Clear-Host
     Write-Host "Network Utilities"
@@ -199,6 +200,7 @@ function NetworkUtilities {
     }
 }
 
+# Testing connectivity to a remote target on a specific port
 function TestNetConnection {
     Write-Host ""
     $targetComputer = Read-Host "Target ?"
@@ -216,6 +218,7 @@ function TestNetConnection {
     }
 }
 
+# Diagnosing network routes to a remote target
 function DiagnoseRouting {
     Write-Host ""
     $targetComputer = Read-Host "Target ?"
