@@ -240,7 +240,6 @@ function DiagnoseRouting {
     }
 }
 
-
 ################ Global Functions ################
 
 function ReturnToMainMenu {
