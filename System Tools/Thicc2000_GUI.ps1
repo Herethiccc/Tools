@@ -27,6 +27,8 @@ $Thicc2000.Controls.Add($Menu)
 # Display the GUI
 $Thicc2000.ShowDialog()
 
+################ AD Functions ################
+
 # # AD Users management menu
 # function ManageADUserGroups {
 #     Clear-Host
@@ -204,6 +206,8 @@ $Thicc2000.ShowDialog()
 #     } 
 # }
 
+################ Network Functions ################
+
 # # Network Utilities menu
 # function NetworkUtilities {
 #     Clear-Host
@@ -257,6 +261,8 @@ $Thicc2000.ShowDialog()
 #         }
 #     }
 # }
+
+################ Global Functions ################
 
 # function ReturnToMainMenu {
 #     Clear-Host
