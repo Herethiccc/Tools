@@ -4,6 +4,9 @@
 #######  Version release date: July 30th 2024   #######
 #######################################################
 
+
+################ AD Functions ################
+
 # AD Users management menu
 function ManageADUserGroups {
     Clear-Host
@@ -181,6 +184,8 @@ function DisplayComputerGPOs {
     } 
 }
 
+################ Network Functions ################
+
 # Network Utilities menu
 function NetworkUtilities {
     Clear-Host
@@ -234,6 +239,9 @@ function DiagnoseRouting {
         }
     }
 }
+
+
+################ Global Functions ################
 
 function ReturnToMainMenu {
     Clear-Host

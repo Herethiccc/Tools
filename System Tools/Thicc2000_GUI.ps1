@@ -1,11 +1,13 @@
 #######################################################
 #######                 THICC2000               #######
 #######################################################
-#######  Version release date: July 30th 2024   #######
+#######  Version release date: August 30th 2024 #######
 #######################################################
 
 # Loading Windows Forms
 Add-Type -AssemblyName System.Windows.Forms
+[System.Windows.Forms.MessageBox]::Show("If you didn't run this with admin privileges, please restart.", "Thicc2000", 0, 64)
+
 
 # Creating canva
 $Thicc2000 = New-Object System.Windows.Forms.Form
