@@ -26,6 +26,7 @@ while true; do
     echo "SYSTEM UTILITIES"
     echo "1. List local users"
     echo "2. List a user's group"
+    echo "3. "
     echo "Q. Quit"
     echo ""
 
