@@ -240,6 +240,36 @@ function DiagnoseRouting {
     }
 }
 
+################ System Functions ################
+
+# System utilities menu
+function SystemUtilities {
+    Clear-Host
+    Write-Host "System Utilities"
+    Write-Host "------------------------------------------------------------"
+    Write-Host "1. List known printers"
+    Write-Host "R. Return to main menu"
+    Write-Host "Q. Quit"
+    Write-Host "------------------------------------------------------------"
+    $choice = Read-Host "Pick an option"
+    switch ($choice) {
+        1 { ListPrinters }
+        'R' { ReturnToMainMenu }
+        'Q' { QuitScript }
+    }
+}
+function ListPrinters {
+    Write-Host ""
+    $targetComputer = Read-Host "Target ?"
+    try {
+        Write-Host ""
+        Write-Host "Checking for known printers..." -ForegroundColor Green
+        Get-Printer -ComputerName $targetComputer | Select-Object Name,Type,Location,Comment,DriverName,PrinterStatus | Format-Table -autoSize
+    }
+    catch {
+        Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
 
 ################ Global Functions ################
 
@@ -271,6 +301,7 @@ while ($global:continue) {
     Write-Host "2. AD group management"
     Write-Host "3. GPOs display"
     Write-Host "4. Network utilities"
+    Write-Host "5. System Utilities"
     Write-Host "Q. Quit"
     Write-Host "------------------------------------------------------------"
     $choice = Read-Host "Pick an option"
@@ -279,6 +310,7 @@ while ($global:continue) {
         2 { ManageADGroup }
         3 { DisplayGPOs }
         4 { NetworkUtilities}
+        5 { SystemUtilities}
         'Q' { QuitScript }
         Default { InvalidOption }
     }
