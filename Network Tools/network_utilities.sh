@@ -11,35 +11,48 @@
 #TEST
 #ADD SOME WEIRD FANCY STUFF CAUSE YOU KNOW
 
+reset='\e[0m'
+green='\e[32m'
+red='\e[31m'
+yellow='\e[1;33m'
+
 # Clear screen
 clear
 
 # Display menu
-echo "NETWORK UTILITIES"
-echo "1. Ping"
-echo "2. Netcat"
-echo "3. Traceroute"
-echo ""
+while true; do
 
-#Read user input and save it as $choice variable
-read -p "Pick an option:" choice
+    echo "NETWORK UTILITIES"
+    echo "1. Ping"
+    echo "2. Netcat"
+    echo "3. Traceroute"
+    echo "Q. Quit"
+    echo ""
 
-# Launch command depending on the value stored in $choice
-case $choice in
-    1|ping|Ping|p|P)
-        read -p "Target ?" target
-        ping $target
-        ;;
-    2|netcat|Netcat|n|N)
-        read -p "Target ?" target
-        read -p "Port ?" port
-        nc -vz $target $port
-        ;;
-    3|traceroute|Traceroute|t|T)
-        read -p "Target ?" target
-        traceroute $target
-        ;;
-    *)
-        echo "Invalid option selected."
-        ;;
-esac
+    # Read user input and save it as $choice variable
+    read -p "Pick an option: " choice
+
+    # Launch command depending on the value stored in $choice    
+    case $choice in
+        1|ping|Ping|p|P)
+            read -p "Target? " target
+            ping $target
+            ;;
+        2|netcat|Netcat|n|N)
+            read -p "Target? " target
+            read -p "Port? " port
+            nc -vz $target $port
+            ;;
+        3|traceroute|Traceroute|t|T)
+            read -p "Target? " target
+            traceroute $target
+            ;;
+        Q|quit|Quit|q)
+            echo -e "Goodbye!"
+            break
+            ;;
+        *)
+            echo -e "${red}Invalid option${reset}."
+            ;;
+    esac
+done
