@@ -1,3 +1,9 @@
+#######################################################
+#######       Active Directory Utilities        #######
+#######################################################
+####### Version release date: August 31st 2024  #######
+#######################################################
+
 # AD Users management menu
 function ManageADUserGroups {
     Clear-Host
