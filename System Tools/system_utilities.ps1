@@ -38,6 +38,7 @@ function InvalidOption {
 $global:continue = $true
 while ($global:continue) {
     Write-Host "Network Utilities"
+    Write-Host "/!\ Please make sure to run this script with privileges /!\" -ForegroundColor Yellow
     Write-Host "------------------------------------------------------------"
     Write-Host "1. List Printers"
     Write-Host "Q. Quit"
