@@ -22,8 +22,8 @@ clear
 # Display menu
 while true; do
 
-    echo "${yellow}/!\\ Please make sure to run this script with privileges /!\\${reset}"
     echo "SYSTEM UTILITIES"
+    echo "${yellow}/!\\ Please make sure to run this script with privileges /!\\${reset}"
     echo "1. List local users"
     echo "2. List a user's group"
     echo "3. "
