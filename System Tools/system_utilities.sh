@@ -39,15 +39,18 @@ while true; do
             echo -e "${green}Listing local users:${reset}"
             sudo cat /etc/passwd
             ;;
+
         2.)
             read -p "User ?" user
             echo -e "${green}User $user is part of the following groups:${reset}"
             sudo groups $user
         ;;
+
         Q|quit|Quit|q)
             echo -e "Goodbye!"
             break
             ;; 
+            
         *)
             echo -e "${red}Invalid option${reset}."
             ;;
