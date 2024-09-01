@@ -26,6 +26,7 @@ while true; do
     echo "1. Ping"
     echo "2. Netcat"
     echo "3. Traceroute"
+    echo "4. TCPDUMP"
     echo "Q. Quit"
     echo ""
 
@@ -46,6 +47,10 @@ while true; do
         3|traceroute|Traceroute|t|T)
             read -p "Target? " target
             traceroute $target
+            ;;
+        4|tcpdump|TCPDUMP|tcp|TCP
+            read -p "Source host ?" source
+            sudo tcpdump host $source
             ;;
         Q|quit|Quit|q)
             echo -e "Goodbye!"
