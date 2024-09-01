@@ -41,17 +41,20 @@ while true; do
             read -p "Target? " target
             ping $target
             ;;
+            
         2|netcat|Netcat|n|N)
             clear
             read -p "Target? " target
             read -p "Port? " port
             nc -vz $target $port
             ;;
+
         3|traceroute|Traceroute|t|T)
             clear
             read -p "Target? " target
             traceroute $target
             ;;
+
         4|tcpdump|TCPDUMP|tcp|TCP)
             clear
 
@@ -63,11 +66,13 @@ while true; do
                 echo -e "${red}TCPDUMP is NOT installed!${reset}"
             fi
             ;;
+
         Q|quit|Quit|q)
             clear
             echo -e "Goodbye!"
             break
             ;;
+
         *)
             clear
             echo -e "${red}Invalid option${reset}."
