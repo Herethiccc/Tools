@@ -5,14 +5,15 @@
 #######################################################
 
 # AD Users management menu
-function ManageADUserGroups {
+function ManageADUser {
     Clear-Host
-    Write-Host "AD user's group management"
+    Write-Host "AD user management"
     Write-Host "------------------------------------------------------------"
     Write-Host "1. Add user to a group"
     Write-Host "2. Remove user from a group"
     Write-Host "3. Move user from one group to an other"
     Write-Host "4. List the user's groups"
+    Write-Host "5. Check if a user's password expired"
     Write-Host "R. Return to main menu"
     Write-Host "Q. Quit"
     Write-Host "------------------------------------------------------------"
@@ -22,6 +23,7 @@ function ManageADUserGroups {
         2 { RemoveUserFromGroup }
         3 { MoveUserToGroup }
         4 { ListUserGroups }
+        5 { CheckPasswordExpiration }
         'R' { ReturnToMainMenu }
         'Q' { QuitScript }
         Default { InvalidOption }
@@ -91,6 +93,24 @@ function ListUserGroups {
         catch {
             Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
         }
+    }
+}
+
+function CheckPasswordExpiration {
+    $userToQuery = Read-Host "Please provide the user you want to query"
+    
+    try {
+        Write-Host ""
+        Write-Host "Checking if $usertoQuery's password has expired.." -ForegroundColor Yellow
+        $PasswordExpired = Get-ADUser -Identity $userToQuery -Properties PasswordExpired
+            if ($PasswordExpired -eq "True") {
+                Write-Host "Password is Expired" -ForegroundColor Red
+            } else {
+                Write-Host "Password isn't expired" -ForegroundColor Green
+            }
+    }
+    catch {
+        Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
     }
 }
 
@@ -208,14 +228,14 @@ while ($global:continue) {
     Write-Host ""
     Write-Host "/!\ Please make sure to run this script with privileges /!\" -ForegroundColor Yellow
     Write-Host "------------------------------------------------------------"
-    Write-Host "1. AD user's groups management"
+    Write-Host "1. AD user management"
     Write-Host "2. AD group management"
     Write-Host "3. GPOs display"
     Write-Host "Q. Quit"
     Write-Host "------------------------------------------------------------"
     $choice = Read-Host "Pick an option"
     switch ($choice) {
-        1 { ManageADUserGroups }
+        1 { ManageADUser }
         2 { ManageADGroup }
         3 { DisplayGPOs }
         'Q' { QuitScript }
