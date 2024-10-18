@@ -53,17 +53,17 @@ while true; do
             echo -e "${green}System version:${reset}"
             uname -a
             ;;
-        
+
         4. )
             echo -e "${green}Disks and partitions:${reset}"
             df -h
             ;;
-        
+
         5.)
             echo -e "${green}IP configuration${reset}"
             ip a
             ;;
-        
+
         6.)
             echo -e "${green}Last reboot:${reset}"
             who -b
