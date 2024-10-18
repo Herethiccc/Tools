@@ -26,7 +26,10 @@ while true; do
     echo "${yellow}/!\\ Please make sure to run this script with privileges /!\\${reset}"
     echo "1. List local users"
     echo "2. List a user's group"
-    echo "3. "
+    echo "3. Display system version"
+    echo "4. Display disks/partitions"
+    echo "5. Display IP configuration"
+    echo "6. Show last reboot"
     echo "Q. Quit"
     echo ""
 
@@ -46,8 +49,28 @@ while true; do
             sudo groups $user
         ;;
 
+        3. )
+            echo -e "${green}System version:${reset}"
+            uname -a
+            ;;
+        
+        4. )
+            echo -e "${green}Disks and partitions:${reset}"
+            df -h
+            ;;
+        
+        5.)
+            echo -e "${green}IP configuration${reset}"
+            ip a
+            ;;
+        
+        6.)
+            echo -e "${green}Last reboot:${reset}"
+            who -b
+        ;;
+
         Q|quit|Quit|q)
-            echo -e "Goodbye!"
+            echo -e "${yellow}Goodbye!${reset}"
             break
             ;; 
             
