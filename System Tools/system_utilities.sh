@@ -14,7 +14,7 @@
 reset='\e[0m'
 green='\e[32m'
 red='\e[31m'
-yellow='\e[1;33m'
+yellow='\e[33m'
 
 # Clear screen
 clear
@@ -22,52 +22,67 @@ clear
 # Display menu
 while true; do
 
-    echo "SYSTEM UTILITIES"
-    echo "${yellow}/!\\ Please make sure to run this script with privileges /!\\${reset}"
+    echo -e "\e[4mSYSTEM UTILITIES\e[0m"
+    echo -e "${yellow}Please make sure to run this script with privileges${reset}"
+    echo ""
     echo "1. List local users"
     echo "2. List a user's group"
     echo "3. Display system version"
     echo "4. Display disks/partitions"
     echo "5. Display IP configuration"
-    echo "6. Show last reboot"
+    echo "6. Display IP configuration (detailed)"
+    echo "7. Show last reboot"
     echo "Q. Quit"
     echo ""
 
     #Read user input and save it as $choice variable
-    read -p "Pick an option:" choice
+    read -p "Pick an option: " choice
+    echo ""
 
     # Launch command depending on the value stored in $choice
     case $choice in
         1)
             echo -e "${green}Listing local users:${reset}"
             sudo cat /etc/passwd
+            echo ""
             ;;
 
-        2.)
-            read -p "User ?" user
+        2)
+            read -p "User: " user
             echo -e "${green}User $user is part of the following groups:${reset}"
             sudo groups $user
-        ;;
+            echo ""
+            ;;
 
-        3. )
+        3)
             echo -e "${green}System version:${reset}"
+            grep "PRETTY_NAME" /etc/os-release
             uname -a
+            echo ""
             ;;
 
-        4. )
+        4)
             echo -e "${green}Disks and partitions:${reset}"
-            df -h
+            lsblk
+            echo ""
             ;;
 
-        5.)
-            echo -e "${green}IP configuration${reset}"
-            ip a
+        5)  echo -e "${green}IP configuration:${reset}"
+            ip -c -br a
+            echo ""
+            ;;
+        
+        6)
+            echo -e "${green}IP configuration (detailed):${reset}"
+            ip -c a
+            echo ""
             ;;
 
-        6.)
+        7)
             echo -e "${green}Last reboot:${reset}"
             who -b
-        ;;
+            echo ""
+            ;;
 
         Q|quit|Quit|q)
             echo -e "${yellow}Goodbye!${reset}"
@@ -75,7 +90,8 @@ while true; do
             ;; 
             
         *)
-            echo -e "${red}Invalid option${reset}."
+            echo -e "${red}$choice is not a valid option${reset}."
+            echo ""
             ;;
     esac
 done
