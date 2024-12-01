@@ -32,6 +32,7 @@ while true; do
     echo "5. Display IP configuration"
     echo "6. Display IP configuration (detailed)"
     echo "7. Show last reboot"
+    echo "8. Update/Upgrade packages"
     echo "Q. Quit"
     echo ""
 
@@ -81,6 +82,21 @@ while true; do
         7)
             echo -e "${green}Last reboot:${reset}"
             who -b
+            echo ""
+            ;;
+        
+        8)
+            echo -e "${yellow}Updating and upgrading packages:${reset}"
+
+            if grep -wq "ID=debian" /etc/os-release
+            then 
+                sudo apt-get -y update && apt-get -y upgrade
+            elif grep -wq "ID=rhel" /etc/os-release
+            then
+                sudo yum update
+            else
+                echo -e "${yellow}Distribution not supported (yet)${reset}"
+            fi
             echo ""
             ;;
 
