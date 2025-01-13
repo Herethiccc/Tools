@@ -88,7 +88,15 @@ while true; do
         8)
             echo -e "${yellow}Updating and upgrading packages:${reset}"
 
-            sudo apt update && sudo apt upgrade -y
+            if grep -wq "ID=debian" /etc/os-release
+            then 
+                sudo apt update && sudo apt upgrade -y
+            elif grep -wq "ID=rhel" /etc/os-release
+            then
+                sudo yum update
+            else
+                echo -e "${yellow}Distribution not supported (yet)${reset}"
+            fi
             echo ""
             ;;
 
